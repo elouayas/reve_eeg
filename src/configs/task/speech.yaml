@@ -1,0 +1,43 @@
+name: Speech
+n_chans: 64
+duration: 3
+
+classifier:
+  n_classes: 5
+  pooling: last
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloaders.LMDBDataset
+    path: ${data_root}/BCIC2020/processed
+    electrodes: ['FP1', 'FP2', 'F7', 'F3', 'FZ', 'F4', 'F8', 'FC5', 'FC1', 'FC2', 'FC6', 'T3', 'C3', 'CZ', 'C4', 'T4', 'TP9', 'CP5', 'CP1', 'CP2', 'CP6', 'TP10', 'T5', 'P3', 'PZ', 'P4', 'T6', 'PO9', 'O1', 'OZ', 'O2', 'PO10', 'AF7', 'AF3', 'AF4', 'AF8', 'F5', 'F1', 'F2', 'F6', 'FT9', 'FT7', 'FC3', 'FC4', 'FT8', 'FT10', 'C5', 'C1', 'C2', 'C6', 'TP7', 'CP3', 'CPz', 'CP4', 'TP8', 'P5', 'P1', 'P2', 'P6', 'PO7', 'PO3', 'POz', 'PO4', 'PO8']
+    scale_factor: 1_000.0
+  batch_size: 64
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 100
+  patience: 15
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.05
+  optimizer:
+    lr: 5e-3
+  scheduler:
+    patience: 6
+
+fine_tuning:
+  n_epochs: 200
+  patience: 15
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.5
+  optimizer:
+    lr: 1e-4
+  scheduler:
+    patience: 6
+
+clip: 100
+
+

@@ -1,0 +1,40 @@
+name: Mental Arithmetic
+n_chans: 20
+duration: 5
+
+classifier:
+  n_classes: 2
+  pooling: last
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloaders.LMDBDataset
+    path: ${data_root}/mental_arithmetic/processed
+    electrodes: ['FP1', 'FP2', 'F3', 'F4', 'F7', 'F8', 'T3', 'T4', 'C3', 'C4', 'T5', 'T6', 'P3', 'P4', 'O1', 'O2', 'FZ', 'CZ', 'PZ', 'A2']
+    scale_factor: 1000.0
+  batch_size: 16
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 20
+  patience: 5
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.05 
+  optimizer:
+    lr: 5e-3
+
+fine_tuning:
+  n_epochs: 200
+  patience: 6
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.5
+  optimizer:
+    lr: 5e-5
+
+clip: 100
+
+
+

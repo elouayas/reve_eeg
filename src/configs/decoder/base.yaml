@@ -1,0 +1,12 @@
+transformer:
+  embed_dim: 512
+  depth: 4
+  heads: 8
+  head_dim: 64
+  mlp_dim_ratio: 2.66
+  use_geglu: True
+
+masking:
+  use_block: True
+  ratio: 0.55
+  

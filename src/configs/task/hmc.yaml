@@ -1,0 +1,40 @@
+name: HMC
+n_chans: 4
+duration: 30
+
+classifier:
+  n_classes: 5
+  pooling: last
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloaders.NeuroLMDataset
+    path: ${data_root}/HMC/processed/
+    electrodes: ['F4', 'C4', 'O2', 'C3']
+    scale_factor: 10.0
+  batch_size: 16
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 20
+  patience: 3
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.05 
+  optimizer:
+    lr: 5e-3
+
+fine_tuning:
+  n_epochs: 200
+  patience: 3
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.3
+  optimizer:
+    lr: 1e-4
+
+clip: 100
+
+
+

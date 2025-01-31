@@ -1,0 +1,12 @@
+window_duration: 2000
+clip: 15
+
+masking:
+  use_block: True
+  masking_window: 200
+  masking_overlap: 20
+  ratio: 0.55
+  radius_spat_mask: 0.03
+  radius_temp_mask: 3
+  dropout_ratio: 0.1
+  dropout_radius: 0.04

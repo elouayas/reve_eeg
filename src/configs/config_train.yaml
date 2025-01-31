@@ -1,0 +1,64 @@
+defaults:
+  - _self_
+  - encoder: base
+  - decoder: base
+  - optimizer: stable_adamw
+  - scheduler: trapezoid
+  - preprocessing: default
+  - init: mae
+
+name: train
+
+mode: train # train, debug
+
+seed: 42
+
+token_avg: True # Average tokens before decoding
+token_avg_lambda: 0.1 # Weight for secondary loss
+
+data:
+  # paths
+  path: ${env:SCRATCH}/dataset/preprocessed_foundation_data
+  # dataloader
+  loader:
+    num_workers: ${min:16, ${cpu_count:}} # 16 or cpu_count
+    prefetch_factor: 3 # Number of batches to prefetch
+  subset: all # all, small or open
+
+trainer:
+  # steps
+  epochs: 200
+  accumulate_grad_batches: 1
+  # HPs
+  lr: 0.001
+  batch_size: 300
+  # grad
+  grad_clip: True
+  grad_clip_norm: 5.0
+
+  n_gpus: ${gpu_count:}
+  n_nodes: 1
+
+checkpointing:
+  path: ${env:SCRATCH}/checkpoints
+  # states (accelerate)
+  load_last_state: False # Resume from the last checkpoint
+  state_path: ${checkpointing.path}/states/
+  max_states: 5 # Maximum number of checkpoints to keep
+  keep_last: True # Keep the last checkpoint as "last" link
+
+wandb: # Set to True to log to wandb
+  log: False
+  path: ${env:SCRATCH}/wandb
+  tags: ["training", "reve"]
+  comment: Main training run
+  project: foundation_EEG
+  entity: entity_name
+  offline: False
+
+hydra:
+  run:
+    dir: outputs/${mode}/${now:%Y.%m.%d}/${now:%H%M%S}
+    # dir: outputs/${mode}
+  job:
+    chdir: true

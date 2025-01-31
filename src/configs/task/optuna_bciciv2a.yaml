@@ -1,0 +1,41 @@
+name: BCIC IV-2a
+n_chans: 22
+duration: 4
+
+classifier:
+  n_classes: 4
+  dropout: optuna:float:0.3:0.1:0.5:log
+  pooling: "no"
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloaders.LMDBDataset
+    path: ${data_root}/BCIC-IV-2a
+    electrodes: ['Fz', 'FC3', 'FC1', 'FCz', 'FC2', 'FC4', 'C5', 'C3', 'C1', 'Cz', 'C2', 'C4', 'C6', 'CP3', 'CP1', 'CPz', 'CP2', 'CP4', 'P1', 'Pz', 'P2', 'POz']
+    scale_factor: 100.0
+  batch_size: 64
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 200
+  warmup_epochs: 10
+  mixup: True
+  optimizer:
+    _target_: utils.stable_adamw.StableAdamW
+    lr: optuna:float:1e-3:1e-4:1e-2:log
+    weight_decay: optuna:float:1e-3:1e-4:1e-2:log
+  patience: 15
+
+fine_tuning:
+  n_epochs: 5
+  patience: 11
+  warmup_epochs: 0
+  mixup: True
+  dropout: 0.5
+  optimizer:
+    _target_: utils.stable_adamw.StableAdamW
+    lr: 1e-4
+    weight_decay: 1e-2
+
+clip: 100

@@ -1,0 +1,49 @@
+defaults:
+  - _self_
+  - encoder: base
+  - optimizer/stable_adamw@task.linear_probing.optimizer
+  - optimizer/stable_adamw@task.fine_tuning.optimizer
+  - scheduler/plateau_acc@task.linear_probing.scheduler
+  - scheduler/plateau_acc@task.fine_tuning.scheduler
+  - init: cls_wrapper
+  - task: _none
+
+mode: train # train, eval_only, debug
+
+############### Modify this section ################
+
+pretrained_path: ${env:SCRATCH}/pretrained_models/reve_base.pth
+cache_dir: .cache
+
+#####################################################
+
+model_type: reve # reve / cbramod / biot / labram
+
+seed: 42
+n_runs: 10
+training_mode: lp # lp, ft, lp+ft
+
+trainer:
+  device: cuda
+  clip_grad: 2.0
+  torch_dtype: fp16
+
+loader:
+  num_workers: 8
+  pin_memory: True
+  persistent_workers: True
+  prefetch_factor: 2
+
+output_dir: ${env:SCRATCH}/checkpoints/${task.name}
+
+lora:
+  enabled: True
+  rank: 16
+  apply_to:
+    - attention
+
+hydra:
+  run:
+    dir: outputs/dt_${mode}
+  job:
+    chdir: true

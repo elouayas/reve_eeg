@@ -1,0 +1,44 @@
+name: Mumtaz
+n_chans: 19
+duration: 5
+
+classifier:
+  n_classes: 2
+  pooling: last
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloaders.LMDBDataset
+    path: ${data_root}/MUMTAZ/processed
+    electrodes: ['FP1', 'FP2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6', 'FZ', 'CZ', 'PZ']
+    scale_factor: 100.0
+  batch_size: 16
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 50
+  patience: 15
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.05
+  optimizer:
+    lr: 5e-3
+  scheduler:
+    patience: 6
+
+fine_tuning:
+  n_epochs: 200
+  patience: 15
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.5
+  optimizer:
+    lr: 1e-4
+  scheduler:
+    patience: 6
+
+clip: 100
+
+
+

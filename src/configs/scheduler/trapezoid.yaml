@@ -1,0 +1,7 @@
+_target_: utils.optim.CyclicTrapezoidLR
+warmup_steps: 0.1
+plateau_steps: 0.8
+cooldown_steps: 0.1
+start_lr: 1e-05
+peak_lr: ${trainer.lr}
+end_lr: 1e-06

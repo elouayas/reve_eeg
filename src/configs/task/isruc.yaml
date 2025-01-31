@@ -1,0 +1,41 @@
+name: isruc
+n_chans: 6
+duration: 30
+
+classifier:
+  n_classes: 5
+  pooling: last
+  dropout: 0.1
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloader_isruc.ISRUCDataset
+    path: ${data_root}/ISRUC/processed
+    electrodes: ['F3', 'C3', 'O1', 'F4', 'C4', 'O2']
+  batch_size: 32
+  seed: ${seed}
+  splits: ["train", "val", "test"]
+
+linear_probing:
+  n_epochs: 20
+  patience: 2
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.05 
+  optimizer:
+    lr: 1e-4
+    weight_decay: 1e-2
+
+fine_tuning:
+  n_epochs: 50
+  patience: 2
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.3
+  optimizer:
+    lr: 1e-4
+
+clip: 100
+
+
+

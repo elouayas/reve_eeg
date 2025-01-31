@@ -1,0 +1,22 @@
+{
+  "architectures": [
+    "Reve"
+  ],
+  "auto_map": {
+    "AutoConfig": "configuration_reve.ReveConfig",
+    "AutoModel": "modeling_reve.Reve"
+  },
+  "depth": 22,
+  "dtype": "float32",
+  "embed_dim": 512,
+  "freqs": 4,
+  "head_dim": 64,
+  "heads": 8,
+  "mlp_dim_ratio": 2.66,
+  "model_type": "reve",
+  "noise_ratio": 0.0025,
+  "patch_overlap": 20,
+  "patch_size": 200,
+  "transformers_version": "4.56.2",
+  "use_geglu": true
+}

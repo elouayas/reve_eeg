@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the REVE paper below."
+title: "REVE Reproduction Codebase"
+license: "MIT"
+url: "https://brain-bzh.github.io/reve/"
+preferred-citation:
+  type: article
+  title: "REVE: A Foundation Model for EEG -- Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects"
+  authors:
+    - family-names: "El Ouahidi"
+      given-names: "Yassine"
+    - family-names: "Lys"
+      given-names: "Jonathan"
+    - family-names: "Tholke"
+      given-names: "Philipp"
+    - family-names: "Farrugia"
+      given-names: "Nicolas"
+    - family-names: "Pasdeloup"
+      given-names: "Bastien"
+    - family-names: "Gripon"
+      given-names: "Vincent"
+    - family-names: "Jerbi"
+      given-names: "Karim"
+    - family-names: "Lioi"
+      given-names: "Giulia"
+  journal: "arXiv"
+  year: 2025
+  volume: "2510.21585"
+  doi: "10.48550/arXiv.2510.21585"
+  url: "https://arxiv.org/abs/2510.21585"

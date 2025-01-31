@@ -1,0 +1,7 @@
+_target_: utils.stable_adamw_distributed.StableAdamW
+lr: ${trainer.lr}
+weight_decay: 0.01
+betas: [0.92, 0.999]
+eps: 1e-09
+# Set to true for explicit sharded training (e.g., FSDP).
+distributed_sharding: null

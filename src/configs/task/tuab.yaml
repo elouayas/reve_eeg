@@ -1,0 +1,35 @@
+name: tuab
+n_chans: 21
+duration: 10
+
+classifier:
+  n_classes: 2
+  pooling: "no"
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloader_tuh.TUAB
+    path: ${data_root}
+    electrodes: ['A1', 'A2', 'C3', 'C4', 'CZ', 'F3', 'F4', 'F7', 'F8', 'FP1', 'FP2', 'FZ', 'O1', 'O2', 'P3', 'P4', 'PZ', 'T3', 'T4', 'T5', 'T6']
+  batch_size: 16
+  seed: ${seed}
+
+linear_probing:
+  n_epochs: 20
+  patience: 5
+  warmup_epochs: 3
+  mixup: True
+  dropout: 0.1
+  optimizer:
+    lr: 5e-3
+
+fine_tuning:
+  n_epochs: 50
+  patience: 10
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.3
+  optimizer:
+    lr: 1e-4
+
+clip: 100

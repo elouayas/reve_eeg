@@ -1,0 +1,9 @@
+init_method: full_megatron
+init_std: 0.02
+init_cutoff_factor: 3.0
+hidden_size: 512
+num_hidden_layers: ${add:${encoder.transformer.depth}, ${decoder.transformer.depth}} # total = encoder_depth + decoder_depth
+init_cls: True
+
+
+

@@ -1,0 +1,37 @@
+name: tuev
+n_chans: 16
+duration: 5
+
+classifier:
+  n_classes: 6
+  pooling: "no"
+
+data_loader:
+  dataset:
+    _target_: downstream_tasks.dataloader_tuh.TUEV
+    path: ${data_root}
+    electrodes: ['FP1-F7', 'F7-T3', 'T3-T5', 'T5-O1', 'FP2-F8', 'F8-T4', 'T4-T6', 'T6-O2','FP1-F3', 'F3-C3', 'C3-P3', 'P3-O1', 'FP2-F4', 'F4-C4', 'C4-P4', 'P4-O2']
+  batch_size: 256
+  seed: ${seed}
+
+
+linear_probing:
+  n_epochs: 20
+  patience: 5
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.5
+  optimizer:
+    lr: 5e-3
+    weight_decay: 1e-1
+
+fine_tuning:
+  n_epochs: 50
+  patience: 10
+  warmup_epochs: 5
+  mixup: True
+  dropout: 0.15
+  optimizer:
+    lr: 1e-4
+
+clip: 100

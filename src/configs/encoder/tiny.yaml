@@ -1,0 +1,12 @@
+transformer:
+  embed_dim: 200
+  depth: 4
+  heads: 4
+  head_dim: 64
+  mlp_dim_ratio: 2.66
+  use_geglu: True
+
+freqs: 3
+noise_ratio: 0.0025
+patch_size: 200
+patch_overlap: 20
