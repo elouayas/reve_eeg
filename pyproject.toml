@@ -2,6 +2,10 @@
 name = "reve"
 version = "0.1.0"
 description = "Codebase for REVE: A Foundation Model for EEG"
+authors = [
+  { name="Jonathan Lys", email="jonathan.lys@imt-atlantique.fr" },
+  { name="Yassine El Ouahidi", email="yassine.elouahidi@mistral.ai" },
+]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
