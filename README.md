@@ -170,6 +170,14 @@ python preprocessing/ISRUC/prepare_ISRUC.py --raw /path/raw --processed /path/ou
 See full notes here:
 - [preprocessing/README.md](preprocessing/README.md)
 
+## Dataset
+
+Part of the dataset (for which the license allows redistribution) is available on Hugging Face:
+
+🔗 [brain-bzh/reve-dataset](https://huggingface.co/datasets/brain-bzh/reve-dataset)
+
+More documentation on how to use the dataset will be provided soon.
+
 ## Notes
 
 - Hydra sets run directories (see `hydra.run.dir` in config files), and scripts use `hydra.job.chdir: true`.
