@@ -5,7 +5,7 @@ license: "MIT"
 url: "https://brain-bzh.github.io/reve/"
 preferred-citation:
   type: article
-  title: "REVE: A Foundation Model for EEG -- Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects"
+  title: "REVE: A Foundation Model for EEG - Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects"
   authors:
     - family-names: "El Ouahidi"
       given-names: "Yassine"
@@ -23,8 +23,6 @@ preferred-citation:
       given-names: "Karim"
     - family-names: "Lioi"
       given-names: "Giulia"
-  journal: "arXiv"
+  journal: "The Thirty-ninth Annual Conference on Neural Information Processing Systems"
   year: 2025
-  volume: "2510.21585"
-  doi: "10.48550/arXiv.2510.21585"
-  url: "https://arxiv.org/abs/2510.21585"
+  url: "https://openreview.net/forum?id=ZeFMtRBy4Z"
